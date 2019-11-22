@@ -13,8 +13,8 @@ class Cult
         @slogan = slogan
         @@all << self
     end
-    def recruit_follower(follower)
-        BloodOath.new(self, follower)
+    def recruit_follower(follower, date)
+        BloodOath.new(self, follower, date)
     end
 
     def cult_population
