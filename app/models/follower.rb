@@ -10,11 +10,17 @@ class Follower
     end
 
     def cults
-
+        blood_oaths = BloodOath.all
+        blood_oaths.select do |blood_oath|
+            blood_oath.follower == self
+        end
     end
 
-    def join_cult
-
+    def join_cult(cult)
+        # Date format: YYYY-MM-DD
+        time = Time.new
+        initiation_date = time.to_s.split[0]
+        BloodOath.new(initiation_date, cult, self)
     end
 
     def self.all
