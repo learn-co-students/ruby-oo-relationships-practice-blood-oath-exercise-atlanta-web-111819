@@ -13,8 +13,8 @@ class Cult
         @slogan = slogan
         @@all << self
     end
-    def recruit_follower(follower, date)
-        BloodOath.new(self, follower, date)
+    def recruit_follower(follower)
+        BloodOath.new(self, follower)
     end
 
     def cult_population
@@ -25,15 +25,15 @@ class Cult
         @@all
     end
 
-    def find_by_name(name)
+    def self.find_by_name(name)
         @@all.select{|cult| cult.name == name}
     end
 
-    def find_by_location(location)
+    def self.find_by_location(location)
         @@all.select{|cult| cult.location == location}
     end
 
-    def find_by_founding_year(year)
+    def self.find_by_founding_year(year)
         @@all.select{|cult| cult.founding_year == year}
     end
 
