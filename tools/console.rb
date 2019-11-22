@@ -11,12 +11,12 @@ follower2 = Follower.new("Gary", 38, "Very bad hait gary")
 follower3 = Follower.new("Zach", 19, "What am i doing")
 follower4 = Follower.new("Eric", 30, "I am the last one")
 
-cult1.recruit_follower(follower4)
-cult1.recruit_follower(follower3)
-cult1.recruit_follower(follower1)
-cult2.recruit_follower(follower2)
-cult2.recruit_follower(follower4)
-cult2.recruit_follower(follower3)
+cult1.recruit_follower(follower4, "1995-07-18")
+cult1.recruit_follower(follower3, "2019-11-23")
+cult1.recruit_follower(follower1, "2017-12-13")
+cult2.recruit_follower(follower2, "2020-04-06")
+cult2.recruit_follower(follower4, "2013-05-28")
+cult2.recruit_follower(follower3, "2012-11-21")
 
 
 binding.pry

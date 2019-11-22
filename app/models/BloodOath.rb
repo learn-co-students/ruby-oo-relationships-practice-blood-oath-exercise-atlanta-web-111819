@@ -15,7 +15,9 @@ class BloodOath
         @@all
     end
 
-    def first_oath
-        @@all.select{|oath| oath.initiation_date.split("-")[0].max && oath.initiation_date.split("-")[2].max && oath.initiation_date.split("-")[4].max}
+    def self.first_oath
+        date = @@all.map{|oath| oath.initiation_date}.sort.last
+        temp = @@all.select{|oath| oath.initiation_date == date}
+        temp[0].follower
     end
 end
