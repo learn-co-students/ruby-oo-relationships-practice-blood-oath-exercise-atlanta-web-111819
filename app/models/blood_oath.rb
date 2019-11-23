@@ -13,4 +13,10 @@ class BloodOath
     def self.all
         @@all
     end
+
+    def self.first_oath
+        oaths = Array.new(self.all)
+        oaths.sort_by! {|oath| oath.initiation_date}
+        oaths[0]
+    end
 end

@@ -1,5 +1,5 @@
 class Cult
-    attr_accessor :name, :location, :founding_year, :slogan
+    attr_reader :name, :location, :founding_year, :slogan
     
     @@all = []
 
@@ -19,11 +19,12 @@ class Cult
         BloodOath.new(initiation_date, self, follower)
     end
     
+    def followers
+        BloodOath.all.select {|blood_oath| blood_oath.cult == self}
+    end
+
     def cult_population
-        followers = BloodOath.all.select do |blood_oath|
-            blood_oath.cult == self
-        end
-        follower.count
+        followers.count
     end
 
     def self.all
@@ -47,4 +48,27 @@ class Cult
             cult.founding_year == year
         end
     end
+
+    def average_age
+        age_sum = followers.reduce(:+) {|follower| follower.age}
+        age_sum.to_f / cult_population
+    end
+
+    def followers_mottos
+        followers.map{|follower| follower.life_motto}
+    end
+
+    def self.least_popular
+        populations = self.all.map {|cult| cult.cult_population}
+        least_population = populations.min
+        self.all.find {|cult| cult.cult_population == least_population}
+    end
+
+    def self.most_common_location
+        locations = self.all.map {|cult| cult.locations}
+        frequency = locations.reduce(Hash.new(0)) {|hash, location| hash[location] += 1; hash}
+        max = frequency.values.max
+        frequency.find {|location, freq| freq == max}
+    end
+
 end
